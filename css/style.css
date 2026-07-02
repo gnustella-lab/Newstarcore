@@ -259,10 +259,17 @@ main { padding-top: var(--header-h); }
 
 .hero h1 em {
     font-style: normal;
+    color: var(--accent);
     background: linear-gradient(135deg, var(--accent) 0%, var(--warm) 60%, var(--gold) 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero h1 em {
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
 }
 
 .hero-lead {
@@ -843,10 +850,17 @@ main { padding-top: var(--header-h); }
     font-weight: 700;
     letter-spacing: -0.05em;
     line-height: 1;
+    color: var(--accent);
     background: linear-gradient(135deg, var(--accent), var(--warm));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .stat-number {
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
 }
 
 .stat-card p { margin-top: 10px; color: var(--text-muted); font-size: 0.88rem; }
@@ -1011,17 +1025,22 @@ main { padding-top: var(--header-h); }
 .footer-links a { transition: color 0.2s; }
 .footer-links a:hover { color: var(--text); }
 
-/* ── Scroll reveal ── */
+/* ── Scroll reveal (progressive enhancement) ── */
 
 .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    opacity: 1;
+    transform: none;
 }
 
-.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+@media (prefers-reduced-motion: no-preference) {
+    .reveal:not(.is-visible) {
+        transform: translateY(20px);
+        transition: transform 0.6s var(--ease);
+    }
+
+    .reveal.is-visible {
+        transform: translateY(0);
+    }
 }
 
 /* ── Responsive ── */
@@ -1032,7 +1051,6 @@ main { padding-top: var(--header-h); }
         transition: none !important;
         animation: none !important;
     }
-    .reveal { opacity: 1; transform: none; }
 }
 
 @media (max-width: 1024px) {

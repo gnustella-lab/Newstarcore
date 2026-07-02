@@ -128,24 +128,41 @@ function initMobileNav() {
     });
 }
 
+let revealObserver;
+
+function revealInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+}
+
 function initReveal() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const items = document.querySelectorAll('.reveal');
-    if (!items.length || reduceMotion) {
+    const items = document.querySelectorAll('.reveal:not(.is-visible)');
+    if (!items.length) return;
+
+    if (reduceMotion) {
         items.forEach((el) => el.classList.add('is-visible'));
         return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    if (!revealObserver) {
+        revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px 0px 0px' });
+    }
 
-    items.forEach((el) => observer.observe(el));
+    items.forEach((el) => {
+        if (revealInViewport(el)) {
+            el.classList.add('is-visible');
+            return;
+        }
+        revealObserver.observe(el);
+    });
 }
 
 async function loadJson(path, fallback) {
@@ -185,7 +202,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initPortfolioPage();
     initStorePage();
     initBlogPage();
-    initPostPage();
+    await initPostPage();
 });
 
 function renderHomeHighlights() {
