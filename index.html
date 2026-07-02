@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newstarcore | Hub de Desenvolvimento & Tech</title>
-    <meta name="description" content="Hub centralizado de portfólio, conteúdo e ferramentas pessoais de Newstarcore.">
+    <title>Newstarcore | Mission Control</title>
+    <meta name="description" content="Hub pessoal de Newstarcore para projetos, artigos, recursos e experimentos com tecnologia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <canvas id="star-canvas" aria-hidden="true"></canvas>
 
-    <header class="header">
+    <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
-            <a href="./" class="logo">
-                <span class="logo-icon" aria-hidden="true">★</span> Newstarcore
+            <a href="./" class="logo" aria-label="Newstarcore home">
+                <span class="logo-mark">NS</span>
+                <span class="logo-text">
+                    <strong>Newstarcore</strong>
+                    <small>mission control</small>
+                </span>
             </a>
             <ul class="nav-links">
                 <li><a href="blog/">Blog</a></li>
@@ -28,27 +32,84 @@
         </nav>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Construindo o futuro, <span class="highlight">um commit</span> por vez.</h1>
-                <p>Desenvolvedor full-stack, explorador de tecnologias cósmicas e criador de ferramentas úteis. Bem-vindo ao meu universo pessoal.</p>
+    <main>
+        <section class="container hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Static core / live interface</p>
+                <h1>Um painel de missão para código, conteúdo e produtos digitais.</h1>
+                <p class="hero-lead">Newstarcore agora opera como um hub modular: portfolio, blog, loja de recursos e dashboard pessoal em uma interface estática pronta para GitHub Pages.</p>
                 <div class="hero-actions">
-                    <a href="portfolio/" class="btn btn-primary">Ver Projetos</a>
-                    <a href="blog/" class="btn btn-secondary">Ler Artigos</a>
+                    <a href="portfolio/" class="btn btn-primary">Abrir Portfólio</a>
+                    <a href="blog/" class="btn btn-secondary">Ler Transmissões</a>
+                </div>
+                <div class="signal-strip" aria-label="Status do sistema">
+                    <span>GitHub Pages ready</span>
+                    <span>Markdown client-side</span>
+                    <span>Vanilla JS</span>
                 </div>
             </div>
+
             <div class="hero-visual" aria-hidden="true">
-                <div class="orbit">
-                    <div class="planet core"></div>
-                    <div class="moon m1"></div>
-                    <div class="moon m2"></div>
+                <div class="command-panel">
+                    <div class="panel-bar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <strong>core.telemetry</strong>
+                    </div>
+                    <div class="terminal-window">
+                        <p><span>&gt;</span> boot newstarcore</p>
+                        <p><span>&gt;</span> loading modules: blog, store, lab</p>
+                        <p><span>&gt;</span> status: orbit stable</p>
+                    </div>
+                    <div class="radar-grid">
+                        <div class="radar">
+                            <i></i>
+                            <b></b>
+                        </div>
+                        <div class="telemetry-stack">
+                            <div><small>deploy</small><strong>static</strong></div>
+                            <div><small>latency</small><strong>low</strong></div>
+                            <div><small>phase</small><strong>01</strong></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="highlights" aria-labelledby="highlights-title">
-            <h2 id="highlights-title">Destaques Atuais</h2>
+        <section class="container section">
+            <div class="section-head">
+                <p class="eyebrow">Navigation matrix</p>
+                <h2>Rotas do sistema</h2>
+                <p>Atalhos para as áreas principais do hub, desenhados como módulos independentes.</p>
+            </div>
+            <div class="grid-3 route-grid">
+                <a class="card route-card" href="blog/">
+                    <span class="card-kicker">01 / conteúdo</span>
+                    <h3>Blog técnico</h3>
+                    <p>Posts em Markdown renderizados no navegador com busca client-side.</p>
+                </a>
+                <a class="card route-card" href="portfolio/">
+                    <span class="card-kicker">02 / builds</span>
+                    <h3>Portfólio</h3>
+                    <p>Projetos filtráveis por stack, com links para repositório e demo.</p>
+                </a>
+                <a class="card route-card" href="store/">
+                    <span class="card-kicker">03 / recursos</span>
+                    <h3>Loja</h3>
+                    <p>Templates, pacotes e materiais gratuitos organizados por categoria.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="container section" aria-labelledby="highlights-title">
+            <div class="section-head split-head">
+                <div>
+                    <p class="eyebrow">Live feed</p>
+                    <h2 id="highlights-title">Destaques Atuais</h2>
+                </div>
+                <p>Itens puxados dos dados estáticos do projeto.</p>
+            </div>
             <div class="grid-3" id="home-highlights">
                 <p class="muted">Carregando destaques...</p>
             </div>
@@ -56,8 +117,9 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Newstarcore. Feito com café e código.</p>
+        <div class="container footer-grid">
+            <p>&copy; 2026 Newstarcore.</p>
+            <p>Static-first. Cosmic interface. No backend required.</p>
         </div>
     </footer>
 

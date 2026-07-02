@@ -7,14 +7,17 @@
     <meta name="description" content="Preview das futuras integrações de IA do Newstarcore.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <canvas id="star-canvas" aria-hidden="true"></canvas>
-    <header class="header">
+    <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
-            <a href="../" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <a href="../" class="logo" aria-label="Newstarcore home">
+                <span class="logo-mark">NS</span>
+                <span class="logo-text"><strong>Newstarcore</strong><small>mission control</small></span>
+            </a>
             <ul class="nav-links">
                 <li><a href="../blog/">Blog</a></li>
                 <li><a href="../portfolio/">Portfólio</a></li>
@@ -26,28 +29,34 @@
     </header>
 
     <main class="container">
-        <h1 class="section-title">Integração IA (Em Breve)</h1>
+        <section class="page-hero compact-hero">
+            <p class="eyebrow">Future module</p>
+            <h1>Integração IA</h1>
+            <p>Preview do caminho para transformar o hub estático em uma camada inteligente com RAG e serverless functions.</p>
+        </section>
 
-        <section class="card" aria-labelledby="ia-status-title">
-            <h2 id="ia-status-title">Status: Planejamento</h2>
-            <p>Atualmente este site é 100% estático. Na Fase 2, migraremos para Vercel ou Netlify com Serverless Functions para habilitar as seguintes features:</p>
+        <section class="card ai-card" aria-labelledby="ia-status-title">
+            <p class="card-kicker">Phase 02 / planning</p>
+            <h2 id="ia-status-title">Do estático ao assistente contextual</h2>
+            <p>Hoje o site não precisa de backend. A próxima fase adiciona endpoints serverless para consultar posts, docs e projetos sem expor chaves privadas no client.</p>
 
             <ul class="feature-list">
-                <li><strong>Chatbot baseado em conteúdo:</strong> um assistente treinado nos posts e docs para responder dúvidas técnicas sobre meus projetos.</li>
-                <li><strong>Recomendações personalizadas:</strong> sugestão de artigos da loja ou blog baseados no histórico de navegação do usuário.</li>
-                <li><strong>Geração de snippets:</strong> uma ferramenta onde você descreve um componente e a IA gera o código baseado no padrão Nebula UI.</li>
+                <li><strong>Chatbot baseado em conteúdo:</strong> respostas técnicas ancoradas nos posts e documentos do hub.</li>
+                <li><strong>Recomendações personalizadas:</strong> sugestões de leituras e recursos a partir do contexto de navegação.</li>
+                <li><strong>Geração de snippets:</strong> criação assistida de componentes no padrão Nebula UI.</li>
             </ul>
 
             <div class="ai-code" aria-label="Stack futura">
-                // Tech Stack Futura:<br>
-                // OpenAI GPT-4-turbo + Pinecone (RAG)<br>
-                // Next.js API Routes / Vercel Edge Functions
+                <span>// future stack</span>
+                <code>OpenAI or Anthropic + pgvector</code>
+                <code>Vercel or Netlify serverless functions</code>
+                <code>RAG over Markdown content</code>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="container"><p>&copy; 2026 Newstarcore.</p></div>
+        <div class="container footer-grid"><p>&copy; 2026 Newstarcore.</p><p>AI module pending.</p></div>
     </footer>
     <script src="../js/main.js"></script>
 </body>

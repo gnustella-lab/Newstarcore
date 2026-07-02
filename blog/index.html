@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Newstarcore</title>
-    <meta name="description" content="Artigos, tutoriais e pensamentos técnicos de Newstarcore.">
+    <meta name="description" content="Transmissões técnicas, tutoriais e pensamentos de Newstarcore.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <canvas id="star-canvas" aria-hidden="true"></canvas>
-    <header class="header">
+    <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
-            <a href="../" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <a href="../" class="logo" aria-label="Newstarcore home">
+                <span class="logo-mark">NS</span>
+                <span class="logo-text"><strong>Newstarcore</strong><small>mission control</small></span>
+            </a>
             <ul class="nav-links">
                 <li><a href="./" aria-current="page">Blog</a></li>
                 <li><a href="../portfolio/">Portfólio</a></li>
@@ -26,15 +29,24 @@
     </header>
 
     <main class="container">
-        <h1 class="section-title">Blog & Conteúdo</h1>
-        <input type="search" id="blog-search" class="search-box" placeholder="Buscar posts por título, resumo ou tag..." aria-label="Buscar posts">
-        <div id="blog-list">
+        <section class="page-hero">
+            <p class="eyebrow">Transmission archive</p>
+            <h1>Blog & Conteúdo</h1>
+            <p>Artigos e notas técnicas publicados como Markdown, renderizados no client para manter o deploy 100% estático.</p>
+        </section>
+
+        <section class="toolbar" aria-label="Busca de posts">
+            <label for="blog-search">Buscar transmissão</label>
+            <input type="search" id="blog-search" class="search-box" placeholder="Filtrar por título, resumo ou tag...">
+        </section>
+
+        <section id="blog-list" class="stack-list" aria-live="polite">
             <p class="muted">Carregando posts...</p>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <div class="container"><p>&copy; 2026 Newstarcore.</p></div>
+        <div class="container footer-grid"><p>&copy; 2026 Newstarcore.</p><p>Markdown powered.</p></div>
     </footer>
     <script src="../js/main.js"></script>
 </body>

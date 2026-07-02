@@ -7,14 +7,17 @@
     <meta name="description" content="Post do blog Newstarcore.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <canvas id="star-canvas" aria-hidden="true"></canvas>
-    <header class="header">
+    <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
-            <a href="../" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <a href="../" class="logo" aria-label="Newstarcore home">
+                <span class="logo-mark">NS</span>
+                <span class="logo-text"><strong>Newstarcore</strong><small>mission control</small></span>
+            </a>
             <ul class="nav-links">
                 <li><a href="./">Blog</a></li>
                 <li><a href="../portfolio/">Portfólio</a></li>
@@ -32,7 +35,7 @@
     </main>
 
     <footer class="footer">
-        <div class="container"><p>&copy; 2026 Newstarcore.</p></div>
+        <div class="container footer-grid"><p>&copy; 2026 Newstarcore.</p><p>Rendered via marked.js.</p></div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../js/main.js"></script>

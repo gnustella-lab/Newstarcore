@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Newstarcore</title>
-    <meta name="description" content="Dashboard pessoal com foco atual, estatísticas e roadmap de aprendizado.">
+    <meta name="description" content="Dashboard pessoal de foco, estatísticas e roadmap de Newstarcore.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <canvas id="star-canvas" aria-hidden="true"></canvas>
-    <header class="header">
+    <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
-            <a href="../" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <a href="../" class="logo" aria-label="Newstarcore home">
+                <span class="logo-mark">NS</span>
+                <span class="logo-text"><strong>Newstarcore</strong><small>mission control</small></span>
+            </a>
             <ul class="nav-links">
                 <li><a href="../blog/">Blog</a></li>
                 <li><a href="../portfolio/">Portfólio</a></li>
@@ -26,45 +29,56 @@
     </header>
 
     <main class="container">
-        <h1 class="section-title">Dashboard Pessoal</h1>
-
-        <section class="now-section" aria-labelledby="now-title">
-            <h2 id="now-title">Now (Agora)</h2>
-            <p>Aprendendo Rust e arquitetura de microsserviços.</p>
-            <p>Trabalhando no projeto "Nebula UI" - criando componentes de tabela virtual.</p>
-            <p>Jogando Starfield nos tempos livres.</p>
+        <section class="page-hero compact-hero">
+            <p class="eyebrow">Personal telemetry</p>
+            <h1>Dashboard Pessoal</h1>
+            <p>Uma leitura rápida do foco atual, sinais do GitHub e trilhas de aprendizado.</p>
         </section>
 
-        <section aria-labelledby="stats-title">
-            <h2 class="section-title" id="stats-title">Estatísticas GitHub</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">1.2k</div>
-                    <p>Contribuições 2023</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">3</div>
-                    <p>Projetos Ativos</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">48</div>
-                    <p>Repositórios</p>
-                </div>
+        <section class="dashboard-grid">
+            <div class="now-section">
+                <p class="card-kicker">Now</p>
+                <h2>Agora</h2>
+                <p>Aprendendo Rust e arquitetura de microsserviços.</p>
+                <p>Trabalhando no projeto Nebula UI com componentes de tabela virtual.</p>
+                <p>Explorando mundos abertos nos intervalos.</p>
+            </div>
+
+            <div class="card status-console">
+                <p class="card-kicker">System log</p>
+                <code>focus: systems</code>
+                <code>stack: rust, go, ui</code>
+                <code>next: vector databases</code>
             </div>
         </section>
 
-        <section aria-labelledby="roadmap-title">
-            <h2 class="section-title" id="roadmap-title">Roadmap de Aprendizado</h2>
+        <section class="section" aria-labelledby="stats-title">
+            <div class="section-head">
+                <p class="eyebrow">GitHub telemetry</p>
+                <h2 id="stats-title">Estatísticas</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><span class="stat-number">1.2k</span><p>Contribuições 2023</p></div>
+                <div class="stat-card"><span class="stat-number">3</span><p>Projetos ativos</p></div>
+                <div class="stat-card"><span class="stat-number">48</span><p>Repositórios</p></div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="roadmap-title">
+            <div class="section-head">
+                <p class="eyebrow">Learning vector</p>
+                <h2 id="roadmap-title">Roadmap</h2>
+            </div>
             <div class="roadmap">
-                <div class="roadmap-step"><div><strong>Rust Fundamentals</strong><br><small>Status: Em progresso</small></div></div>
-                <div class="roadmap-step"><div><strong>WebSockets em Go</strong><br><small>Status: Próximo</small></div></div>
-                <div class="roadmap-step"><div><strong>Vector Databases (pgvector)</strong><br><small>Status: Planejado</small></div></div>
+                <div class="roadmap-step"><strong>Rust Fundamentals</strong><small>Status: Em progresso</small></div>
+                <div class="roadmap-step"><strong>WebSockets em Go</strong><small>Status: Próximo</small></div>
+                <div class="roadmap-step"><strong>Vector Databases (pgvector)</strong><small>Status: Planejado</small></div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="container"><p>&copy; 2026 Newstarcore.</p></div>
+        <div class="container footer-grid"><p>&copy; 2026 Newstarcore.</p><p>Personal telemetry only.</p></div>
     </footer>
     <script src="../js/main.js"></script>
 </body>

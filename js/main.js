@@ -30,6 +30,24 @@ function siteUrl(path = '') {
     return `${basePath}/${cleanPath}`;
 }
 
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+}
+
+function updateMetaDescription(content) {
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta && content) meta.setAttribute('content', content);
+}
+
+function stripFrontMatter(markdown) {
+    return markdown.replace(/^---\s*[\s\S]*?---\s*/, '');
+}
+
 function initStars() {
     const canvas = document.getElementById('star-canvas');
     if (!canvas) return;
@@ -37,22 +55,40 @@ function initStars() {
     const ctx = canvas.getContext('2d');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let stars = [];
+    let width = 0;
+    let height = 0;
 
     function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        stars = Array.from({ length: 100 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 1.5,
-            o: Math.random()
+        const density = window.innerWidth < 720 ? 95 : 150;
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * ratio);
+        canvas.height = Math.floor(height * ratio);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        stars = Array.from({ length: density }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 1.7 + 0.2,
+            o: Math.random() * 0.7 + 0.2,
+            vx: Math.random() * 0.12 + 0.02,
+            vy: Math.random() * 0.06 + 0.01
         }));
     }
 
     function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, width, height);
         stars.forEach((star) => {
-            ctx.fillStyle = `rgba(255, 255, 255, ${star.o})`;
+            if (!reduceMotion) {
+                star.x += star.vx;
+                star.y += star.vy;
+                if (star.x > width + 4) star.x = -4;
+                if (star.y > height + 4) star.y = -4;
+            }
+
+            ctx.fillStyle = `rgba(247, 251, 255, ${star.o})`;
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
             ctx.fill();
@@ -90,24 +126,6 @@ async function loadMarkdown(slug) {
     return response.text();
 }
 
-function stripFrontMatter(markdown) {
-    return markdown.replace(/^---\s*[\s\S]*?---\s*/, '');
-}
-
-function escapeHtml(value) {
-    return String(value)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-}
-
-function updateMetaDescription(content) {
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta && content) meta.setAttribute('content', content);
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
     initStars();
 
@@ -136,23 +154,40 @@ function renderHomeHighlights() {
     const featuredProject = state.projects[0];
     const freeResource = state.products.find((product) => product.price === 'Grátis') || state.products[0];
 
-    highlightsDiv.innerHTML = `
-        <div class="card">
-            <h3>Último Artigo</h3>
-            <p>${escapeHtml(latestPost.title)}</p>
-            <a href="${siteUrl(`blog/post.html?slug=${encodeURIComponent(latestPost.slug)}`)}" class="btn btn-secondary small-btn">Ler mais</a>
-        </div>
-        <div class="card">
-            <h3>Projeto Destaque</h3>
-            <p>${escapeHtml(featuredProject.title)}</p>
-            <a href="${siteUrl('portfolio/')}" class="btn btn-secondary small-btn">Ver projeto</a>
-        </div>
-        <div class="card">
-            <h3>Recurso Grátis</h3>
-            <p>${escapeHtml(freeResource.title)}</p>
-            <a href="${siteUrl('store/')}" class="btn btn-secondary small-btn">Baixar</a>
-        </div>
-    `;
+    const cards = [
+        {
+            label: 'Última transmissão',
+            title: latestPost.title,
+            body: latestPost.excerpt,
+            href: siteUrl(`blog/post.html?slug=${encodeURIComponent(latestPost.slug)}`),
+            action: 'Abrir post'
+        },
+        {
+            label: 'Build em destaque',
+            title: featuredProject.title,
+            body: featuredProject.desc,
+            href: siteUrl('portfolio/'),
+            action: 'Ver projeto'
+        },
+        {
+            label: 'Recurso livre',
+            title: freeResource.title,
+            body: freeResource.desc,
+            href: siteUrl('store/'),
+            action: 'Explorar loja'
+        }
+    ];
+
+    highlightsDiv.innerHTML = cards.map((card) => `
+        <article class="card mission-card">
+            <span class="card-kicker">${escapeHtml(card.label)}</span>
+            <h3>${escapeHtml(card.title)}</h3>
+            <p>${escapeHtml(card.body)}</p>
+            <div class="card-actions">
+                <a href="${escapeHtml(card.href)}" class="btn btn-secondary small-btn">${escapeHtml(card.action)}</a>
+            </div>
+        </article>
+    `).join('');
 }
 
 function initPortfolioPage() {
@@ -235,12 +270,21 @@ async function initPostPage() {
     try {
         const markdown = await loadMarkdown(slug);
         if (!window.marked) throw new Error('marked.js não foi carregado.');
-        postContent.innerHTML = window.marked.parse(stripFrontMatter(markdown));
+        postContent.innerHTML = `
+            <div class="post-meta">
+                <span class="tag tag-accent">${escapeHtml(postData.category)}</span>
+                <span>${escapeHtml(postData.date)}</span>
+            </div>
+            ${window.marked.parse(stripFrontMatter(markdown))}
+        `;
     } catch (error) {
         console.error('Erro ao carregar post.', error);
         postContent.innerHTML = `
+            <div class="post-meta">
+                <span class="tag tag-accent">${escapeHtml(postData.category)}</span>
+                <span>${escapeHtml(postData.date)}</span>
+            </div>
             <h1>${escapeHtml(postData.title)}</h1>
-            <p><em>Publicado em: ${escapeHtml(postData.date)}</em></p>
             <p>${escapeHtml(postData.excerpt)}</p>
             <p class="muted">Não foi possível carregar o arquivo Markdown. Rode um servidor local ou verifique se o arquivo existe em <code>${escapeHtml(siteUrl(`blog/posts/${slug}.md`))}</code>.</p>
         `;
@@ -256,8 +300,9 @@ function renderProjects(items) {
         return;
     }
 
-    grid.innerHTML = items.map((project) => `
-        <article class="card">
+    grid.innerHTML = items.map((project, index) => `
+        <article class="card project-card">
+            <span class="card-kicker">Build ${String(index + 1).padStart(2, '0')}</span>
             <h3>${escapeHtml(project.title)}</h3>
             <p>${escapeHtml(project.desc)}</p>
             <div class="tag-list">
@@ -265,7 +310,7 @@ function renderProjects(items) {
             </div>
             <div class="card-actions">
                 <a href="${escapeHtml(project.repo)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary small-btn">Repositório</a>
-                <a href="${escapeHtml(project.demo)}" class="btn btn-primary small-btn">Demo</a>
+                ${project.demo && project.demo !== '#' ? `<a href="${escapeHtml(project.demo)}" class="btn btn-primary small-btn">Demo</a>` : ''}
             </div>
         </article>
     `).join('');
@@ -281,7 +326,7 @@ function renderProducts(items) {
     }
 
     grid.innerHTML = items.map((product) => `
-        <article class="card">
+        <article class="card product-card">
             <span class="tag tag-accent">${escapeHtml(product.type)}</span>
             <h3>${escapeHtml(product.title)}</h3>
             <p>${escapeHtml(product.desc)}</p>
@@ -306,7 +351,7 @@ function renderBlogList(items) {
         <article class="card blog-card">
             <div class="card-top">
                 <div>
-                    <span class="tag">${escapeHtml(post.category)}</span>
+                    <span class="tag tag-accent">${escapeHtml(post.category)}</span>
                     <h3><a href="${siteUrl(`blog/post.html?slug=${encodeURIComponent(post.slug)}`)}" class="post-link">${escapeHtml(post.title)}</a></h3>
                     <small>${escapeHtml(post.date)}</small>
                 </div>

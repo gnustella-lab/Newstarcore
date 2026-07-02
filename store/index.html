@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja | Newstarcore</title>
-    <meta name="description" content="Templates, snippets, e-books e recursos gratuitos para desenvolvedores.">
+    <meta name="description" content="Recursos, templates e materiais técnicos de Newstarcore.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <canvas id="star-canvas" aria-hidden="true"></canvas>
-    <header class="header">
+    <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
-            <a href="../" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <a href="../" class="logo" aria-label="Newstarcore home">
+                <span class="logo-mark">NS</span>
+                <span class="logo-text"><strong>Newstarcore</strong><small>mission control</small></span>
+            </a>
             <ul class="nav-links">
                 <li><a href="../blog/">Blog</a></li>
                 <li><a href="../portfolio/">Portfólio</a></li>
@@ -26,26 +29,29 @@
     </header>
 
     <main class="container">
-        <h1 class="section-title">Loja de Recursos</h1>
-        <p class="page-lead">Templates, snippets e e-books para acelerar seu dev.</p>
+        <section class="page-hero compact-hero">
+            <p class="eyebrow">Resource bay</p>
+            <h1>Loja de Recursos</h1>
+            <p>Templates, snippets e materiais para acelerar desenvolvimento sem sair do ambiente estático.</p>
+        </section>
 
-        <div class="filter-row">
-            <label for="store-filter">Filtrar:</label>
+        <section class="toolbar" aria-label="Filtro da loja">
+            <label for="store-filter">Categoria</label>
             <select id="store-filter" class="search-box">
                 <option value="all">Tudo</option>
                 <option value="Codigo">Código</option>
                 <option value="Design">Design</option>
                 <option value="Recursos Gratuitos">Grátis</option>
             </select>
-        </div>
+        </section>
 
-        <div class="grid-3" id="store-grid">
+        <section class="grid-3" id="store-grid" aria-live="polite">
             <p class="muted">Carregando recursos...</p>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <div class="container"><p>&copy; 2026 Newstarcore. Pagamentos reais em breve.</p></div>
+        <div class="container footer-grid"><p>&copy; 2026 Newstarcore.</p><p>Pagamentos reais em breve.</p></div>
     </footer>
     <script src="../js/main.js"></script>
 </body>
