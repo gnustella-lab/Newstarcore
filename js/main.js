@@ -21,6 +21,15 @@ const state = {
     posts: FALLBACK_POSTS
 };
 
+const scriptUrl = new URL(document.currentScript.src, window.location.href);
+const basePath = scriptUrl.pathname.replace(/\/js\/main\.js$/, '');
+
+function siteUrl(path = '') {
+    const cleanPath = path.replace(/^\/+/, '');
+    if (!cleanPath) return basePath || '/';
+    return `${basePath}/${cleanPath}`;
+}
+
 function initStars() {
     const canvas = document.getElementById('star-canvas');
     if (!canvas) return;
@@ -76,7 +85,7 @@ async function loadJson(path, fallback) {
 }
 
 async function loadMarkdown(slug) {
-    const response = await fetch(`/blog/posts/${encodeURIComponent(slug)}.md`);
+    const response = await fetch(siteUrl(`blog/posts/${encodeURIComponent(slug)}.md`));
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return response.text();
 }
@@ -103,9 +112,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     initStars();
 
     const [projects, products, posts] = await Promise.all([
-        loadJson('/data/projects.json', FALLBACK_PROJECTS),
-        loadJson('/data/products.json', FALLBACK_PRODUCTS),
-        loadJson('/data/posts.json', FALLBACK_POSTS)
+        loadJson(siteUrl('data/projects.json'), FALLBACK_PROJECTS),
+        loadJson(siteUrl('data/products.json'), FALLBACK_PRODUCTS),
+        loadJson(siteUrl('data/posts.json'), FALLBACK_POSTS)
     ]);
 
     state.projects = projects;
@@ -131,17 +140,17 @@ function renderHomeHighlights() {
         <div class="card">
             <h3>Último Artigo</h3>
             <p>${escapeHtml(latestPost.title)}</p>
-            <a href="/blog/post.html?slug=${encodeURIComponent(latestPost.slug)}" class="btn btn-secondary small-btn">Ler mais</a>
+            <a href="${siteUrl(`blog/post.html?slug=${encodeURIComponent(latestPost.slug)}`)}" class="btn btn-secondary small-btn">Ler mais</a>
         </div>
         <div class="card">
             <h3>Projeto Destaque</h3>
             <p>${escapeHtml(featuredProject.title)}</p>
-            <a href="/portfolio/" class="btn btn-secondary small-btn">Ver projeto</a>
+            <a href="${siteUrl('portfolio/')}" class="btn btn-secondary small-btn">Ver projeto</a>
         </div>
         <div class="card">
             <h3>Recurso Grátis</h3>
             <p>${escapeHtml(freeResource.title)}</p>
-            <a href="/store/" class="btn btn-secondary small-btn">Baixar</a>
+            <a href="${siteUrl('store/')}" class="btn btn-secondary small-btn">Baixar</a>
         </div>
     `;
 }
@@ -233,7 +242,7 @@ async function initPostPage() {
             <h1>${escapeHtml(postData.title)}</h1>
             <p><em>Publicado em: ${escapeHtml(postData.date)}</em></p>
             <p>${escapeHtml(postData.excerpt)}</p>
-            <p class="muted">Não foi possível carregar o arquivo Markdown. Rode um servidor local ou verifique se o arquivo existe em <code>/blog/posts/${escapeHtml(slug)}.md</code>.</p>
+            <p class="muted">Não foi possível carregar o arquivo Markdown. Rode um servidor local ou verifique se o arquivo existe em <code>${escapeHtml(siteUrl(`blog/posts/${slug}.md`))}</code>.</p>
         `;
     }
 }
@@ -298,7 +307,7 @@ function renderBlogList(items) {
             <div class="card-top">
                 <div>
                     <span class="tag">${escapeHtml(post.category)}</span>
-                    <h3><a href="/blog/post.html?slug=${encodeURIComponent(post.slug)}" class="post-link">${escapeHtml(post.title)}</a></h3>
+                    <h3><a href="${siteUrl(`blog/post.html?slug=${encodeURIComponent(post.slug)}`)}" class="post-link">${escapeHtml(post.title)}</a></h3>
                     <small>${escapeHtml(post.date)}</small>
                 </div>
                 <div class="tag-list">
