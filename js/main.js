@@ -1,18 +1,18 @@
 const FALLBACK_PROJECTS = [
     { id: 1, title: "Galaxy Auth", stack: ["Node.js", "JWT", "Postgres"], desc: "Sistema de autenticação OAuth2 escalável.", repo: "https://github.com/newstarcore/galaxy-auth", demo: "#" },
-    { id: 2, title: "Nebula UI", stack: ["React", "Tailwind", "Storybook"], desc: "Biblioteca de componentes cósmicos e acessíveis.", repo: "https://github.com/newstarcore/nebula-ui", demo: "#" },
+    { id: 2, title: "Nebula UI", stack: ["React", "Tailwind", "Storybook"], desc: "Biblioteca de componentes acessíveis e reutilizáveis.", repo: "https://github.com/newstarcore/nebula-ui", demo: "#" },
     { id: 3, title: "Pulsar CLI", stack: ["Go", "Docker"], desc: "Ferramenta de linha de comando para deploy rápido.", repo: "https://github.com/newstarcore/pulsar-cli", demo: "#" }
 ];
 
 const FALLBACK_PRODUCTS = [
     { id: 1, title: "Template Portfólio Astro", type: "Codigo", price: "Grátis", desc: "Template performático para devs.", link: "#" },
-    { id: 2, title: "Pacote de Ícones Cosmic", type: "Design", price: "$5", desc: "50 ícones SVG estilo minimalista espacial.", link: "#" },
+    { id: 2, title: "Pacote de Ícones Prism", type: "Design", price: "$5", desc: "60 ícones SVG minimalistas.", link: "#" },
     { id: 3, title: "E-book: Clean Code em JS", type: "Recursos Gratuitos", price: "Grátis", desc: "Guia de boas práticas em JavaScript moderno.", link: "#" }
 ];
 
 const FALLBACK_POSTS = [
-    { slug: "construindo-app-estatica", title: "Construindo Apps Estáticas em 2023", date: "2023-10-25", category: "Tutoriais", tags: ["js", "github-pages"], excerpt: "Como criar um everything app sem backend." },
-    { slug: "pensamentos-sobre-ia", title: "Reflexões: IA no fluxo de trabalho", date: "2023-10-15", category: "Pensamentos", tags: ["ia", "produtividade"], excerpt: "O papel da IA não é substituir, mas amplificar." }
+    { slug: "construindo-app-estatica", title: "Construindo Apps Estáticas em 2026", date: "2026-03-10", category: "Tutoriais", tags: ["js", "github-pages"], excerpt: "Como criar um everything app sem backend." },
+    { slug: "pensamentos-sobre-ia", title: "Reflexões: IA no fluxo de trabalho", date: "2026-02-18", category: "Pensamentos", tags: ["ia", "produtividade"], excerpt: "O papel da IA não é substituir, mas amplificar." }
 ];
 
 const state = {
@@ -48,18 +48,17 @@ function stripFrontMatter(markdown) {
     return markdown.replace(/^---\s*[\s\S]*?---\s*/, '');
 }
 
-function initStars() {
-    const canvas = document.getElementById('star-canvas');
+function initAurora() {
+    const canvas = document.getElementById('aurora-canvas');
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let stars = [];
     let width = 0;
     let height = 0;
+    let time = 0;
 
     function resize() {
-        const density = window.innerWidth < 720 ? 95 : 150;
         const ratio = Math.min(window.devicePixelRatio || 1, 2);
         width = window.innerWidth;
         height = window.innerHeight;
@@ -68,45 +67,85 @@ function initStars() {
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-        stars = Array.from({ length: density }, () => ({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            r: Math.random() * 1.7 + 0.2,
-            o: Math.random() * 0.7 + 0.2,
-            vx: Math.random() * 0.12 + 0.02,
-            vy: Math.random() * 0.06 + 0.01
-        }));
     }
 
     function draw() {
         ctx.clearRect(0, 0, width, height);
-        stars.forEach((star) => {
-            if (!reduceMotion) {
-                star.x += star.vx;
-                star.y += star.vy;
-                if (star.x > width + 4) star.x = -4;
-                if (star.y > height + 4) star.y = -4;
-            }
 
-            ctx.fillStyle = `rgba(247, 251, 255, ${star.o})`;
-            ctx.beginPath();
-            ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-            ctx.fill();
+        const blobs = [
+            { x: 0.2, y: 0.3, r: 280, color: [124, 92, 255], speed: 0.0004 },
+            { x: 0.75, y: 0.2, r: 220, color: [255, 107, 74], speed: 0.0003 },
+            { x: 0.5, y: 0.7, r: 200, color: [61, 214, 140], speed: 0.0005 }
+        ];
+
+        blobs.forEach((blob, i) => {
+            const ox = blob.x * width + Math.sin(time * blob.speed + i) * 60;
+            const oy = blob.y * height + Math.cos(time * blob.speed * 1.3 + i) * 40;
+            const gradient = ctx.createRadialGradient(ox, oy, 0, ox, oy, blob.r);
+            gradient.addColorStop(0, `rgba(${blob.color.join(',')}, 0.12)`);
+            gradient.addColorStop(1, `rgba(${blob.color.join(',')}, 0)`);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
         });
     }
 
     function animate() {
+        if (!reduceMotion) time += 16;
         draw();
-        if (!reduceMotion) requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', () => {
-        resize();
-        draw();
-    });
-
+    window.addEventListener('resize', resize);
     resize();
     animate();
+}
+
+function initHeader() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+}
+
+function initMobileNav() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+
+    toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        links.classList.toggle('is-open', !open);
+    });
+
+    links.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+            toggle.setAttribute('aria-expanded', 'false');
+            links.classList.remove('is-open');
+        });
+    });
+}
+
+function initReveal() {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('.reveal');
+    if (!items.length || reduceMotion) {
+        items.forEach((el) => el.classList.add('is-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach((el) => observer.observe(el));
 }
 
 async function loadJson(path, fallback) {
@@ -127,7 +166,10 @@ async function loadMarkdown(slug) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    initStars();
+    initAurora();
+    initHeader();
+    initMobileNav();
+    initReveal();
 
     const [projects, products, posts] = await Promise.all([
         loadJson(siteUrl('data/projects.json'), FALLBACK_PROJECTS),
@@ -156,21 +198,21 @@ function renderHomeHighlights() {
 
     const cards = [
         {
-            label: 'Última transmissão',
+            label: 'Último artigo',
             title: latestPost.title,
             body: latestPost.excerpt,
             href: siteUrl(`blog/post.html?slug=${encodeURIComponent(latestPost.slug)}`),
-            action: 'Abrir post'
+            action: 'Ler artigo'
         },
         {
-            label: 'Build em destaque',
+            label: 'Projeto em destaque',
             title: featuredProject.title,
             body: featuredProject.desc,
             href: siteUrl('portfolio/'),
-            action: 'Ver projeto'
+            action: 'Ver portfólio'
         },
         {
-            label: 'Recurso livre',
+            label: 'Recurso gratuito',
             title: freeResource.title,
             body: freeResource.desc,
             href: siteUrl('store/'),
@@ -179,7 +221,7 @@ function renderHomeHighlights() {
     ];
 
     highlightsDiv.innerHTML = cards.map((card) => `
-        <article class="card mission-card">
+        <article class="card mission-card reveal">
             <span class="card-kicker">${escapeHtml(card.label)}</span>
             <h3>${escapeHtml(card.title)}</h3>
             <p>${escapeHtml(card.body)}</p>
@@ -188,6 +230,8 @@ function renderHomeHighlights() {
             </div>
         </article>
     `).join('');
+
+    initReveal();
 }
 
 function initPortfolioPage() {
@@ -301,8 +345,8 @@ function renderProjects(items) {
     }
 
     grid.innerHTML = items.map((project, index) => `
-        <article class="card project-card">
-            <span class="card-kicker">Build ${String(index + 1).padStart(2, '0')}</span>
+        <article class="card project-card reveal">
+            <span class="card-kicker">Projeto ${String(index + 1).padStart(2, '0')}</span>
             <h3>${escapeHtml(project.title)}</h3>
             <p>${escapeHtml(project.desc)}</p>
             <div class="tag-list">
@@ -314,6 +358,8 @@ function renderProjects(items) {
             </div>
         </article>
     `).join('');
+
+    initReveal();
 }
 
 function renderProducts(items) {
@@ -326,7 +372,7 @@ function renderProducts(items) {
     }
 
     grid.innerHTML = items.map((product) => `
-        <article class="card product-card">
+        <article class="card product-card reveal">
             <span class="tag tag-accent">${escapeHtml(product.type)}</span>
             <h3>${escapeHtml(product.title)}</h3>
             <p>${escapeHtml(product.desc)}</p>
@@ -336,6 +382,8 @@ function renderProducts(items) {
             </div>
         </article>
     `).join('');
+
+    initReveal();
 }
 
 function renderBlogList(items) {
@@ -348,7 +396,7 @@ function renderBlogList(items) {
     }
 
     list.innerHTML = items.map((post) => `
-        <article class="card blog-card">
+        <article class="card blog-card reveal">
             <div class="card-top">
                 <div>
                     <span class="tag tag-accent">${escapeHtml(post.category)}</span>
@@ -362,4 +410,6 @@ function renderBlogList(items) {
             <p>${escapeHtml(post.excerpt)}</p>
         </article>
     `).join('');
+
+    initReveal();
 }

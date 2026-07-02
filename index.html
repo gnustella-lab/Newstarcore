@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newstarcore | Mission Control</title>
-    <meta name="description" content="Hub pessoal de Newstarcore para projetos, artigos, recursos e experimentos com tecnologia.">
+    <title>Newstarcore — Hub Pessoal</title>
+    <meta name="description" content="Hub pessoal de Newstarcore: portfólio, blog, recursos digitais e experimentos com tecnologia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <canvas id="star-canvas" aria-hidden="true"></canvas>
+    <canvas id="aurora-canvas" aria-hidden="true"></canvas>
 
     <header class="site-header">
         <nav class="container nav" aria-label="Navegação principal">
@@ -19,9 +19,12 @@
                 <span class="logo-mark">NS</span>
                 <span class="logo-text">
                     <strong>Newstarcore</strong>
-                    <small>mission control</small>
+                    <small>personal hub</small>
                 </span>
             </a>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="blog/">Blog</a></li>
                 <li><a href="portfolio/">Portfólio</a></li>
@@ -35,42 +38,60 @@
     <main>
         <section class="container hero">
             <div class="hero-copy">
-                <p class="eyebrow">Static core / live interface</p>
-                <h1>Um painel de missão para código, conteúdo e produtos digitais.</h1>
-                <p class="hero-lead">Newstarcore agora opera como um hub modular: portfolio, blog, loja de recursos e dashboard pessoal em uma interface estática pronta para GitHub Pages.</p>
+                <div class="hero-badge">Online — v2.0</div>
+                <h1>Construo <em>produtos digitais</em> com código, design e intenção.</h1>
+                <p class="hero-lead">Newstarcore é meu hub pessoal: um espaço para projetos, artigos, recursos e experimentos — tudo em um site estático, rápido e sem backend.</p>
                 <div class="hero-actions">
-                    <a href="portfolio/" class="btn btn-primary">Abrir Portfólio</a>
-                    <a href="blog/" class="btn btn-secondary">Ler Transmissões</a>
+                    <a href="portfolio/" class="btn btn-primary">Ver Portfólio</a>
+                    <a href="blog/" class="btn btn-secondary">Ler o Blog</a>
                 </div>
-                <div class="signal-strip" aria-label="Status do sistema">
-                    <span>GitHub Pages ready</span>
-                    <span>Markdown client-side</span>
-                    <span>Vanilla JS</span>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>3</strong>
+                        <span>Projetos ativos</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>2</strong>
+                        <span>Artigos publicados</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>100%</strong>
+                        <span>Estático</span>
+                    </div>
                 </div>
             </div>
 
             <div class="hero-visual" aria-hidden="true">
-                <div class="command-panel">
-                    <div class="panel-bar">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <strong>core.telemetry</strong>
+                <div class="bento-card">
+                    <div class="bento-icon purple">⚡</div>
+                    <span class="bento-label">Stack</span>
+                    <h3>Vanilla JS</h3>
+                    <p>Sem frameworks pesados. Performance máxima no client.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon warm">📝</div>
+                    <span class="bento-label">Conteúdo</span>
+                    <h3>Markdown</h3>
+                    <p>Blog renderizado no navegador via marked.js.</p>
+                </div>
+                <div class="bento-card wide">
+                    <span class="bento-label">core.config</span>
+                    <div class="code-snippet">
+                        <span class="cm">// newstarcore.config.js</span><br>
+                        <span class="kw">export default</span> {<br>
+                        &nbsp;&nbsp;deploy: <span class="str">"github-pages"</span>,<br>
+                        &nbsp;&nbsp;modules: [<span class="str">"blog"</span>, <span class="str">"store"</span>, <span class="str">"lab"</span>],<br>
+                        &nbsp;&nbsp;status: <span class="str">"live"</span><br>
+                        }
                     </div>
-                    <div class="terminal-window">
-                        <p><span>&gt;</span> boot newstarcore</p>
-                        <p><span>&gt;</span> loading modules: blog, store, lab</p>
-                        <p><span>&gt;</span> status: orbit stable</p>
-                    </div>
-                    <div class="radar-grid">
-                        <div class="radar">
-                            <i></i>
-                            <b></b>
+                    <div class="progress-bars">
+                        <div class="progress-item">
+                            <label><span>Performance</span><span>98%</span></label>
+                            <div class="progress-track"><div class="progress-fill" style="width:98%"></div></div>
                         </div>
-                        <div class="telemetry-stack">
-                            <div><small>deploy</small><strong>static</strong></div>
-                            <div><small>latency</small><strong>low</strong></div>
-                            <div><small>phase</small><strong>01</strong></div>
+                        <div class="progress-item">
+                            <label><span>Acessibilidade</span><span>92%</span></label>
+                            <div class="progress-track"><div class="progress-fill" style="width:92%"></div></div>
                         </div>
                     </div>
                 </div>
@@ -78,37 +99,40 @@
         </section>
 
         <section class="container section">
-            <div class="section-head">
-                <p class="eyebrow">Navigation matrix</p>
-                <h2>Rotas do sistema</h2>
-                <p>Atalhos para as áreas principais do hub, desenhados como módulos independentes.</p>
+            <div class="section-head centered reveal">
+                <p class="eyebrow">Explorar</p>
+                <h2>Tudo em um só lugar</h2>
+                <p>Módulos independentes conectados por uma interface coesa e responsiva.</p>
             </div>
-            <div class="grid-3 route-grid">
-                <a class="card route-card" href="blog/">
-                    <span class="card-kicker">01 / conteúdo</span>
-                    <h3>Blog técnico</h3>
-                    <p>Posts em Markdown renderizados no navegador com busca client-side.</p>
+            <div class="grid-3">
+                <a class="card route-card reveal" href="blog/">
+                    <span class="card-kicker">01 — Conteúdo</span>
+                    <h3>Blog</h3>
+                    <p>Tutoriais, reflexões e notas técnicas em Markdown com busca client-side.</p>
+                    <span class="card-arrow" aria-hidden="true">→</span>
                 </a>
-                <a class="card route-card" href="portfolio/">
-                    <span class="card-kicker">02 / builds</span>
+                <a class="card route-card reveal" href="portfolio/">
+                    <span class="card-kicker">02 — Projetos</span>
                     <h3>Portfólio</h3>
-                    <p>Projetos filtráveis por stack, com links para repositório e demo.</p>
+                    <p>Projetos filtráveis por stack, com links para repositório e demo ao vivo.</p>
+                    <span class="card-arrow" aria-hidden="true">→</span>
                 </a>
-                <a class="card route-card" href="store/">
-                    <span class="card-kicker">03 / recursos</span>
+                <a class="card route-card reveal" href="store/">
+                    <span class="card-kicker">03 — Recursos</span>
                     <h3>Loja</h3>
-                    <p>Templates, pacotes e materiais gratuitos organizados por categoria.</p>
+                    <p>Templates, pacotes de design e materiais gratuitos para acelerar seu workflow.</p>
+                    <span class="card-arrow" aria-hidden="true">→</span>
                 </a>
             </div>
         </section>
 
         <section class="container section" aria-labelledby="highlights-title">
-            <div class="section-head split-head">
+            <div class="section-head split-head reveal">
                 <div>
-                    <p class="eyebrow">Live feed</p>
-                    <h2 id="highlights-title">Destaques Atuais</h2>
+                    <p class="eyebrow">Em destaque</p>
+                    <h2 id="highlights-title">Últimas atualizações</h2>
                 </div>
-                <p>Itens puxados dos dados estáticos do projeto.</p>
+                <p>Conteúdo puxado dos dados estáticos do projeto em tempo real.</p>
             </div>
             <div class="grid-3" id="home-highlights">
                 <p class="muted">Carregando destaques...</p>
@@ -118,8 +142,12 @@
 
     <footer class="footer">
         <div class="container footer-grid">
-            <p>&copy; 2026 Newstarcore.</p>
-            <p>Static-first. Cosmic interface. No backend required.</p>
+            <p>&copy; 2026 Newstarcore</p>
+            <ul class="footer-links">
+                <li><a href="https://github.com/gnustella-lab/Newstarcore" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="dashboard/">Dashboard</a></li>
+                <li><a href="ia-preview/">IA Preview</a></li>
+            </ul>
         </div>
     </footer>
 
