@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Preview | Newstarcore</title>
+    <meta name="description" content="Preview das futuras integrações de IA do Newstarcore.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+    <header class="header">
+        <nav class="container nav" aria-label="Navegação principal">
+            <a href="/" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <ul class="nav-links">
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/portfolio/">Portfólio</a></li>
+                <li><a href="/store/">Loja</a></li>
+                <li><a href="/dashboard/">Dashboard</a></li>
+                <li><a href="/ia-preview/" aria-current="page">IA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">Integração IA (Em Breve)</h1>
+
+        <section class="card" aria-labelledby="ia-status-title">
+            <h2 id="ia-status-title">Status: Planejamento</h2>
+            <p>Atualmente este site é 100% estático. Na Fase 2, migraremos para Vercel ou Netlify com Serverless Functions para habilitar as seguintes features:</p>
+
+            <ul class="feature-list">
+                <li><strong>Chatbot baseado em conteúdo:</strong> um assistente treinado nos posts e docs para responder dúvidas técnicas sobre meus projetos.</li>
+                <li><strong>Recomendações personalizadas:</strong> sugestão de artigos da loja ou blog baseados no histórico de navegação do usuário.</li>
+                <li><strong>Geração de snippets:</strong> uma ferramenta onde você descreve um componente e a IA gera o código baseado no padrão Nebula UI.</li>
+            </ul>
+
+            <div class="ai-code" aria-label="Stack futura">
+                // Tech Stack Futura:<br>
+                // OpenAI GPT-4-turbo + Pinecone (RAG)<br>
+                // Next.js API Routes / Vercel Edge Functions
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2026 Newstarcore.</p></div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

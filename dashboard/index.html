@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Newstarcore</title>
+    <meta name="description" content="Dashboard pessoal com foco atual, estatísticas e roadmap de aprendizado.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+    <header class="header">
+        <nav class="container nav" aria-label="Navegação principal">
+            <a href="/" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <ul class="nav-links">
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/portfolio/">Portfólio</a></li>
+                <li><a href="/store/">Loja</a></li>
+                <li><a href="/dashboard/" aria-current="page">Dashboard</a></li>
+                <li><a href="/ia-preview/">IA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">Dashboard Pessoal</h1>
+
+        <section class="now-section" aria-labelledby="now-title">
+            <h2 id="now-title">Now (Agora)</h2>
+            <p>Aprendendo Rust e arquitetura de microsserviços.</p>
+            <p>Trabalhando no projeto "Nebula UI" - criando componentes de tabela virtual.</p>
+            <p>Jogando Starfield nos tempos livres.</p>
+        </section>
+
+        <section aria-labelledby="stats-title">
+            <h2 class="section-title" id="stats-title">Estatísticas GitHub</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1.2k</div>
+                    <p>Contribuições 2023</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <p>Projetos Ativos</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">48</div>
+                    <p>Repositórios</p>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="roadmap-title">
+            <h2 class="section-title" id="roadmap-title">Roadmap de Aprendizado</h2>
+            <div class="roadmap">
+                <div class="roadmap-step"><div><strong>Rust Fundamentals</strong><br><small>Status: Em progresso</small></div></div>
+                <div class="roadmap-step"><div><strong>WebSockets em Go</strong><br><small>Status: Próximo</small></div></div>
+                <div class="roadmap-step"><div><strong>Vector Databases (pgvector)</strong><br><small>Status: Planejado</small></div></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2026 Newstarcore.</p></div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

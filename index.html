@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newstarcore | Hub de Desenvolvimento & Tech</title>
+    <meta name="description" content="Hub centralizado de portfólio, conteúdo e ferramentas pessoais de Newstarcore.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+
+    <header class="header">
+        <nav class="container nav" aria-label="Navegação principal">
+            <a href="/" class="logo">
+                <span class="logo-icon" aria-hidden="true">★</span> Newstarcore
+            </a>
+            <ul class="nav-links">
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/portfolio/">Portfólio</a></li>
+                <li><a href="/store/">Loja</a></li>
+                <li><a href="/dashboard/">Dashboard</a></li>
+                <li><a href="/ia-preview/">IA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Construindo o futuro, <span class="highlight">um commit</span> por vez.</h1>
+                <p>Desenvolvedor full-stack, explorador de tecnologias cósmicas e criador de ferramentas úteis. Bem-vindo ao meu universo pessoal.</p>
+                <div class="hero-actions">
+                    <a href="/portfolio/" class="btn btn-primary">Ver Projetos</a>
+                    <a href="/blog/" class="btn btn-secondary">Ler Artigos</a>
+                </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <div class="orbit">
+                    <div class="planet core"></div>
+                    <div class="moon m1"></div>
+                    <div class="moon m2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="highlights" aria-labelledby="highlights-title">
+            <h2 id="highlights-title">Destaques Atuais</h2>
+            <div class="grid-3" id="home-highlights">
+                <p class="muted">Carregando destaques...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Newstarcore. Feito com café e código.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

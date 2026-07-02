@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Galaxy Auth",
+    "stack": ["Node.js", "JWT", "Postgres"],
+    "desc": "Sistema de autenticação OAuth2 escalável.",
+    "repo": "https://github.com/newstarcore/galaxy-auth",
+    "demo": "#"
+  },
+  {
+    "id": 2,
+    "title": "Nebula UI",
+    "stack": ["React", "Tailwind", "Storybook"],
+    "desc": "Biblioteca de componentes cósmicos e acessíveis.",
+    "repo": "https://github.com/newstarcore/nebula-ui",
+    "demo": "#"
+  },
+  {
+    "id": 3,
+    "title": "Pulsar CLI",
+    "stack": ["Go", "Docker"],
+    "desc": "Ferramenta de linha de comando para deploy rápido.",
+    "repo": "https://github.com/newstarcore/pulsar-cli",
+    "demo": "#"
+  }
+]

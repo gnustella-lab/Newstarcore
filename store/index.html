@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja | Newstarcore</title>
+    <meta name="description" content="Templates, snippets, e-books e recursos gratuitos para desenvolvedores.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+    <header class="header">
+        <nav class="container nav" aria-label="Navegação principal">
+            <a href="/" class="logo"><span class="logo-icon" aria-hidden="true">★</span> Newstarcore</a>
+            <ul class="nav-links">
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/portfolio/">Portfólio</a></li>
+                <li><a href="/store/" aria-current="page">Loja</a></li>
+                <li><a href="/dashboard/">Dashboard</a></li>
+                <li><a href="/ia-preview/">IA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">Loja de Recursos</h1>
+        <p class="page-lead">Templates, snippets e e-books para acelerar seu dev.</p>
+
+        <div class="filter-row">
+            <label for="store-filter">Filtrar:</label>
+            <select id="store-filter" class="search-box">
+                <option value="all">Tudo</option>
+                <option value="Codigo">Código</option>
+                <option value="Design">Design</option>
+                <option value="Recursos Gratuitos">Grátis</option>
+            </select>
+        </div>
+
+        <div class="grid-3" id="store-grid">
+            <p class="muted">Carregando recursos...</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2026 Newstarcore. Pagamentos reais em breve.</p></div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

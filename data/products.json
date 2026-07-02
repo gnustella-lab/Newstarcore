@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Template Portfólio Astro",
+    "type": "Codigo",
+    "price": "Grátis",
+    "desc": "Template performático para devs.",
+    "link": "#"
+  },
+  {
+    "id": 2,
+    "title": "Pacote de Ícones Cosmic",
+    "type": "Design",
+    "price": "$5",
+    "desc": "50 ícones SVG estilo minimalista espacial.",
+    "link": "#"
+  },
+  {
+    "id": 3,
+    "title": "E-book: Clean Code em JS",
+    "type": "Recursos Gratuitos",
+    "price": "Grátis",
+    "desc": "Guia de boas práticas em JavaScript moderno.",
+    "link": "#"
+  }
+]
