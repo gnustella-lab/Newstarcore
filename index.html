@@ -1,156 +1,262 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newstarcore — Hub Pessoal</title>
-    <meta name="description" content="Hub pessoal de Newstarcore: portfólio, blog, recursos digitais e experimentos com tecnologia.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Your Name | Projects & Social Media</title>
+  <meta name="description" content="Explore my projects and find me on social media.">
+  <meta name="theme-color" content="#0d1117">
+
+  <!-- Open Graph metadata -->
+  <meta property="og:title" content="Your Name | Projects & Social Media">
+  <meta property="og:description" content="Explore my projects and find me on social media.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gnustella-lab.github.io/Newstarcore/">
+  <meta property="og:image" content="https://github.com/identicons/placeholder.png">
+
+  <!-- Emoji favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+
+  <!-- Font Awesome icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0d1117;
+      --card: #161b22;
+      --card-hover: #1c2129;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --border: #30363d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(920px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .profile {
+      padding: 56px 0 36px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 104px;
+      height: 104px;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--card);
+      box-shadow: 0 0 0 6px rgb(88 166 255 / 10%);
+    }
+
+    h1 {
+      margin: 20px 0 6px;
+      color: #f0f6fc;
+      font-size: clamp(1.75rem, 5vw, 2.25rem);
+      letter-spacing: -0.03em;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding-bottom: 56px;
+    }
+
+    .column {
+      min-width: 0;
+    }
+
+    .column h2 {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 84px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      background: var(--card-hover);
+      box-shadow: 0 12px 28px rgb(0 0 0 / 28%);
+    }
+
+    .link-card:focus-visible {
+      outline: 3px solid rgb(88 166 255 / 45%);
+      outline-offset: 3px;
+    }
+
+    .card-icon {
+      display: grid;
+      flex: 0 0 46px;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 10px;
+      background: rgb(88 166 255 / 12%);
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .card-title {
+      flex: 1;
+      color: #f0f6fc;
+      font-size: 1.05rem;
+      font-weight: 650;
+    }
+
+    .card-arrow {
+      color: var(--muted);
+      font-size: 0.85rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .link-card:hover .card-arrow {
+      transform: translateX(3px);
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 22px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (min-width: 600px) {
+      .links-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="aurora-canvas" aria-hidden="true"></canvas>
+  <header class="profile container">
+    <img
+      class="avatar"
+      src="https://github.com/identicons/placeholder.png"
+      alt="Your Name profile picture"
+      width="104"
+      height="104"
+    >
+    <h1>Your Name</h1>
+    <p class="tagline">Projects, experiments, and places to find me.</p>
+  </header>
 
-    <header class="site-header">
-        <nav class="container nav" aria-label="Navegação principal">
-            <a href="./" class="logo" aria-label="Newstarcore home">
-                <span class="logo-mark">NS</span>
-                <span class="logo-text">
-                    <strong>Newstarcore</strong>
-                    <small>personal hub</small>
-                </span>
-            </a>
-            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="portfolio/">Portfólio</a></li>
-                <li><a href="store/">Loja</a></li>
-                <li><a href="dashboard/">Dashboard</a></li>
-                <li><a href="ia-preview/">IA</a></li>
-            </ul>
-        </nav>
-    </header>
+  <main class="container">
+    <div class="links-grid">
+      <section class="column" aria-labelledby="projects-title">
+        <h2 id="projects-title">Projects</h2>
+        <div class="card-list">
+          <a class="link-card" href="https://gnustella-lab.github.io/sImage/" target="_blank" rel="noopener noreferrer">
+            <span class="card-icon" aria-hidden="true"><i class="fa-regular fa-image"></i></span>
+            <span class="card-title">sImage</span>
+            <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+          </a>
 
-    <main>
-        <section class="container hero">
-            <div class="hero-copy">
-                <div class="hero-badge">Online — v2.0</div>
-                <h1>Construo <em>produtos digitais</em> com código, design e intenção.</h1>
-                <p class="hero-lead">Newstarcore é meu hub pessoal: um espaço para projetos, artigos, recursos e experimentos — tudo em um site estático, rápido e sem backend.</p>
-                <div class="hero-actions">
-                    <a href="portfolio/" class="btn btn-primary">Ver Portfólio</a>
-                    <a href="blog/" class="btn btn-secondary">Ler o Blog</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <strong>3</strong>
-                        <span>Projetos ativos</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>2</strong>
-                        <span>Artigos publicados</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>100%</strong>
-                        <span>Estático</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-visual" aria-hidden="true">
-                <div class="bento-card">
-                    <div class="bento-icon purple">⚡</div>
-                    <span class="bento-label">Stack</span>
-                    <h3>Vanilla JS</h3>
-                    <p>Sem frameworks pesados. Performance máxima no client.</p>
-                </div>
-                <div class="bento-card">
-                    <div class="bento-icon warm">📝</div>
-                    <span class="bento-label">Conteúdo</span>
-                    <h3>Markdown</h3>
-                    <p>Blog renderizado no navegador via marked.js.</p>
-                </div>
-                <div class="bento-card wide">
-                    <span class="bento-label">core.config</span>
-                    <div class="code-snippet">
-                        <span class="cm">// newstarcore.config.js</span><br>
-                        <span class="kw">export default</span> {<br>
-                        &nbsp;&nbsp;deploy: <span class="str">"github-pages"</span>,<br>
-                        &nbsp;&nbsp;modules: [<span class="str">"blog"</span>, <span class="str">"store"</span>, <span class="str">"lab"</span>],<br>
-                        &nbsp;&nbsp;status: <span class="str">"live"</span><br>
-                        }
-                    </div>
-                    <div class="progress-bars">
-                        <div class="progress-item">
-                            <label><span>Performance</span><span>98%</span></label>
-                            <div class="progress-track"><div class="progress-fill" style="width:98%"></div></div>
-                        </div>
-                        <div class="progress-item">
-                            <label><span>Acessibilidade</span><span>92%</span></label>
-                            <div class="progress-track"><div class="progress-fill" style="width:92%"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="container section">
-            <div class="section-head centered reveal">
-                <p class="eyebrow">Explorar</p>
-                <h2>Tudo em um só lugar</h2>
-                <p>Módulos independentes conectados por uma interface coesa e responsiva.</p>
-            </div>
-            <div class="grid-3">
-                <a class="card route-card reveal" href="blog/">
-                    <span class="card-kicker">01 — Conteúdo</span>
-                    <h3>Blog</h3>
-                    <p>Tutoriais, reflexões e notas técnicas em Markdown com busca client-side.</p>
-                    <span class="card-arrow" aria-hidden="true">→</span>
-                </a>
-                <a class="card route-card reveal" href="portfolio/">
-                    <span class="card-kicker">02 — Projetos</span>
-                    <h3>Portfólio</h3>
-                    <p>Projetos filtráveis por stack, com links para repositório e demo ao vivo.</p>
-                    <span class="card-arrow" aria-hidden="true">→</span>
-                </a>
-                <a class="card route-card reveal" href="store/">
-                    <span class="card-kicker">03 — Recursos</span>
-                    <h3>Loja</h3>
-                    <p>Templates, pacotes de design e materiais gratuitos para acelerar seu workflow.</p>
-                    <span class="card-arrow" aria-hidden="true">→</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="container section" aria-labelledby="highlights-title">
-            <div class="section-head split-head reveal">
-                <div>
-                    <p class="eyebrow">Em destaque</p>
-                    <h2 id="highlights-title">Últimas atualizações</h2>
-                </div>
-                <p>Conteúdo puxado dos dados estáticos do projeto em tempo real.</p>
-            </div>
-            <div class="grid-3" id="home-highlights">
-                <p class="muted">Carregando destaques...</p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-grid">
-            <p>&copy; 2026 Newstarcore</p>
-            <ul class="footer-links">
-                <li><a href="https://github.com/gnustella-lab/Newstarcore" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                <li><a href="dashboard/">Dashboard</a></li>
-                <li><a href="ia-preview/">IA Preview</a></li>
-            </ul>
+          <!-- Add more project cards here -->
         </div>
-    </footer>
+      </section>
 
-    <script src="js/main.js"></script>
+      <section class="column" aria-labelledby="social-title">
+        <h2 id="social-title">Social Media</h2>
+        <div class="card-list">
+          <a class="link-card" href="https://x.com/newstarcore" target="_blank" rel="noopener noreferrer">
+            <span class="card-icon" aria-hidden="true"><i class="fa-brands fa-x-twitter"></i></span>
+            <span class="card-title">X / Twitter</span>
+            <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+          </a>
+
+          <!-- Add more social media cards here -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Keep the copyright year current automatically.
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
